@@ -1,7 +1,6 @@
 # GIT Notes
 
 This document contains notes on GIT and how one can understand it.
-
 ### Resources used
 • [Git official documentation](https://git-scm.com/book/en/v2)   
 • [Youtube Playlist](https://www.youtube.com/playlist?list=PLu0W_9lII9agwhy658ZPA0MTStKUJTWPi)   
@@ -205,6 +204,10 @@ touch file.ext
 ```
 • To tell GIT to ignore some files and don’t tell if changes have been done
 Create a **.gitignore** text file. Write the name of the files in this file each on next line.
+.gitignore file is not a .txt extension file. It has to be created using the following command:
+```
+touch .gitignore
+```
 
 • To ignore all files of particular extension  
 Write *.ext in .gitignore file
