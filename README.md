@@ -24,19 +24,21 @@ GitHub uses Git but Git does not use GitHub.
 • Git generally only adds content. When you do actions in Git, nearly all of them only add data to the Git database.   
 • Git **stores snapshot** of the file and not only the differences, snapshot is the representation of the current state of the file. Each commit contains a pointer to its root tree, representing the state of the working directory at that time. The commit has a list of **parent commits** corresponding to the previous snapshots. A commit with no parents is a **root commit** and a commit with multiple parents is a **merge commit**. Commits also contain metadata describing the snapshot such as author and committer (including name, email address, and date) and a commit message. The commit message is an opportunity for the commit author to describe the purpose of that commit with respect to the parents.   
 • The tree is the directory which contains list of changes done on each file in the directory. Each list is a child of the tree.
-
-[git-tree]()
+![git-tree](https://github.com/DakshNsut/Git-Notes/assets/97459596/76a1f110-148f-4aca-b0e0-7d51a8fc999a)
 
 ### Version Control Systems
 **Version Control Systems** (VSCs) are the software tools for tracking/managing all the changes made to the source code during the project development. It keeps a record of every single change made to the code. It also allows us to turn back to the previous version of the code if any mistake is made in the current version.
 
 #### Types of VSCs:
-1. **Local Version Control System**: Local Version Control System is in your local machine. It is stored in a database. If a user wants a particular version of folder, then one may query the database.  If the local machine crashes, it would not be possible to retrieve the files, and all the information will be lost. If anything happens to a single version, all the versions made after that will be lost. Also, with the Local Version Control System, it is not possible to collaborate with other collaborators on other systems.
-[local-vcs]()  
-2. **Centralized Version Control System**: In the Centralized Version Control Systems, there will be a single central server that contains all the files related to the project, and many collaborators checkout files from this single server (you will only have a working copy). The problem with the Centralized Version Control Systems is if the central server crashes, almost everything related to the project will be lost. Here, the user only takes the latest folder from the repository and does changes and then commits the updated file.
-[centralized-vcs]()   
+1. **Local Version Control System**: Local Version Control System is in your local machine. It is stored in a database. If a user wants a particular version of folder, then one may query the database.  If the local machine crashes, it would not be possible to retrieve the files, and all the information will be lost. If anything happens to a single version, all the versions made after that will be lost. Also, with the Local Version Control System, it is not possible to collaborate with other collaborators on other systems.   
+![local-vcs](https://github.com/DakshNsut/Git-Notes/assets/97459596/5cf15d56-4112-4d09-8fd2-d1aba218e35e)
+
+2. **Centralized Version Control System**: In the Centralized Version Control Systems, there will be a single central server that contains all the files related to the project, and many collaborators checkout files from this single server (you will only have a working copy). The problem with the Centralized Version Control Systems is if the central server crashes, almost everything related to the project will be lost. Here, the user only takes the latest folder from the repository and does changes and then commits the updated file.   
+![centralized-vcs](https://github.com/DakshNsut/Git-Notes/assets/97459596/4ba1603e-b139-42cd-8c2b-42228a06b72a)
+
 3. **Distributed Version Control System**: The only major difference you will find here is, instead of one single repository which is the server, here every single developer or client has their own server and they will have a copy of the entire history or version of the code and all of its branches in their local server or machine. So when you start working on a project, you clone the code from the master repository in your own hard drive, then you get the code from your own repository to make changes and after doing changes, you commit your changes to your local repository and at this point, your local repository will have ‘change sets’ but it is still disconnected with the master repository. Firstly, you commit all the changes in your own server or repository and then the ‘set of changes’ will merge to the master repository. Getting the new change from the central repository is called “pulling” and merging your local repository’s ‘set of changes’ to the central repository is called “pushing”.   
-[distributed-vcs]()    
+![distributed-vcs](https://github.com/DakshNsut/Git-Notes/assets/97459596/f68bd79c-dc82-46d7-8d10-4835e6ac481b)
+
 • DVCS is faster than CVCS because you do not need to communicate with the remote server for each command. You do everything locally which gives you the benefit to work faster than CVCS.    
 • Every client or user can work locally and disconnected which is more convenient than centralized source control and that is why it is called distributed.   
 • If the main server goes down or it crashes in DVCS, you can still get the backup or entire history of the code from your local repository or server where the full version of the code is already saved.   
@@ -51,7 +53,7 @@ Linux commands like ‘sudo’ or ‘apt-get’ work on Git Bash.
 ```
 pwd
 ```
-This command returns the present working directory.
+This command returns the present working directory.   
 • 
 ```
 ls
@@ -173,8 +175,9 @@ git pull
 git pull is actually a combination of git fetch and git merge.
 This updates the local copy with new commits from the remote repository. 
 
-### File Status Life Cycle
-[file-cycle]()
+### File Status Life Cycle   
+![file-cycle](https://github.com/DakshNsut/Git-Notes/assets/97459596/cd8e78ec-18c6-4790-867f-ecbf504278a0)
+
 • **Untracked**: Files come in this stage after we use command “git init”. Before this, files were not even a git file, so they did not exist in any stage of the cycle.
 
 • **Unmodified**: Files come in this stage when we use command “git commit”. This means the files are not modified by the user. In this stage the files are being tracked by Git. Note: Files after using “git add” command just after “git init” also come under this state.
@@ -182,16 +185,14 @@ This updates the local copy with new commits from the remote repository.
 • **Modified**: Files come in this stage when the user has changed the file content and that is not tracked by Git. Changes done before committing when files are not in staged, such files also come in this stage. Now, if we commit then the changes staged before will only be tracked. But if the file is staged again using “git add” then the new changes will also be committed after using “git commit”.
 
 • **Staged**: Files come in this stage when we use command “git add” after modifying them (not after using “git init”, because then they come under unmodified category). After staging the changes in files, the files are committed using “git commit” command and files come in “unmodified” stage because the changes done are now tracked by git.
-
-[example1]()
+![example1](https://github.com/DakshNsut/Git-Notes/assets/97459596/ea89f6aa-d5d2-457a-be62-4e232ec35ce9)
 
 1. not a git repository: not there in any git stage.
 2. Initialized as a git repository.
 3. git status: tells that files are in “untracked” state.
 4. git add –a: adds all the files to staging area and all files are in “unmodified” state. Thus, files before commit can also reside in “unmodified” stage (only after git init and git add).
 5. git status: tells that all files are “staged” (but still not committed).
-
-[example2]()
+![example2](https://github.com/DakshNsut/Git-Notes/assets/97459596/3288ad3f-7494-4329-8a59-523002930393)
 
 6. When some changes are done now, git status tells that a file is “modified” (goes from unmodified to modified), and the changes should be staged.
 7. The changes in the modified file are staged using “git add”.
@@ -206,21 +207,21 @@ touch file.ext
 Create a **.gitignore** text file. Write the name of the files in this file each on next line.
 
 • To ignore all files of particular extension  
-**Write *.ext in .gitignore file**
+Write *.ext in .gitignore file
 
 • To ignore a folder inside this folder anywhere with this name   
-**Write folderName/ in .gitignore file**
+Write folderName/ in .gitignore file
 
 • To ignore the outer folder only with the mentioned name   
-**Write /folderName/ in .gitignore file**
+Write /folderName/ in .gitignore file
 
 • To ignore a folder at specific location (inside the root directory)   
-**Write InnerFolderName/folderName or Write /InnerFolderName/folderName in .gitignore file**
+Write InnerFolderName/folderName or Write /InnerFolderName/folderName in .gitignore file
 
 • Git by default ignores a empty folder, if we have a folder in which we have a file which we have ignored, then Git will treat this folder as empty and will simply ignore it.
 
 • When you don’t want to ignore a file but it is being ignored due to other reasons as above   
-**Write !README.md in .gitignore file**
+Write !README.md in .gitignore file
 
 • To get differences between the changes committed/staged and the ones modified
 ```
@@ -315,9 +316,8 @@ git log –-pretty=format:”%h -- %an”
 %an is for Author Name   
 %ae is for Author Email   
 %cn is for Committer Name   
-%ce is Committer Email
-
-[output1]()
+%ce is Committer Email  
+![output1](https://github.com/DakshNsut/Git-Notes/assets/97459596/578d0a8b-93eb-43fb-a960-42333b06c501)
 
 • To do some changes in the last commit done by anybody, changes in message adding more modifications use:
 ```
@@ -448,8 +448,9 @@ git config --global alias.st status
 ## Branching in Git
 **Branching** means you diverge from the main line of development and continue to do work without messing with that main line. In many VCS tools, this is a somewhat expensive process, often requiring you to create a new copy of your source code directory, which can take a long time for large projects.   
 
-Many companies try to develop their products by doing some changes to it. These changes could not be done in the main product files, because changing them may incur mistakes and can put the system down. We all have heard that server of big MNCs got down for one day and they must incur billion of losses. So, either change have to be done in a copy of the product. But that would waster a lot of memory space.
-
+Many companies try to develop their products by doing some changes to it. These changes could not be done in the main product files, because changing them may incur mistakes and can put the system down. We all have heard that server of big MNCs got down for one day and they must incur billion of losses. So, either change have to be done in a copy of the product. But that would waster a lot of memory space.   
+![branching](https://github.com/DakshNsut/Git-Notes/assets/97459596/b60a703e-957c-48a5-a977-b12bed3145cf)
+  
 **Branch** is like a local space (or RAM) and main branch is like secondary memory (or HD). The branch can be merged with main branch, merging adds all files in branch to the main branch. **master branch** is the main branch by default.   
 • To lists all the available branches use:
 ```
@@ -486,13 +487,15 @@ one content
 second content  
 >>>>
 ```
-[example3]()   
+![example3](https://github.com/DakshNsut/Git-Notes/assets/97459596/09529b8f-dfe3-4137-ad63-472b9aed7056)
+
 The user must remove this whole part and replace it with the content the user wants.   
-[example4]()   
+![example4](https://github.com/DakshNsut/Git-Notes/assets/97459596/9e27f4f8-c6da-4be0-b851-255a54a1d845)
+
 'git add' and 'git commit' commands are required to be executed. Merging is seen as an operation in main branch. After this replacing, stage the changes done and commit them. It will be seen as merge commit.
-[example5]()
-[example6]()
-[merge-conflict]()
+![example5](https://github.com/DakshNsut/Git-Notes/assets/97459596/494c6b66-2b79-459f-8888-e2ec74ee7884)  
+![example6](https://github.com/DakshNsut/Git-Notes/assets/97459596/1885d9ff-e5cb-4384-9a41-e7136819d404)  
+![merge-conflict](https://github.com/DakshNsut/Git-Notes/assets/97459596/e2f730ee-0362-4118-9248-4a5624273abe)  
 
 **Merge conflict** will arise only when changes are done in both master and branch, and the state of both the branches are changed. Otherwise, merging will happen automatically (no need of "git add" or "git commit"). **If no changes have been done to main branch, then content of master will be changed to content of branch (if commit c6 was not done)**.
 
@@ -524,9 +527,11 @@ It deletes not merged branches also.
 Types of branching workflows are:
 1. **Long-Running Branches**: This includes branches that are always open and that you use for different stages of your development cycle, you can merge regularly from some of them into others. They will be there for a long period of time until the product is running/useful.
 2. **Topic-Branch**: A topic branch is a short-lived branch that you create and user for a single feature or related work. They will be there for a short period of time until the feature is not added or the issue is not resolved.
-[branching-workflow1]()
-[branching-workflow1]()    
+![branching-workflow1](https://github.com/DakshNsut/Git-Notes/assets/97459596/f859c0cd-43e2-4aee-a1cb-bcb89d960100)
+![branching-workflow2](https://github.com/DakshNsut/Git-Notes/assets/97459596/0e942042-0c5d-4115-bc13-84ca66e49874)
+
 Now, if ‘idea’ and ‘issue v2’ branches are approved and must be merged to master, the git branch tree would look as below:
+![branching-workflow3](https://github.com/DakshNsut/Git-Notes/assets/97459596/9901089e-ee53-409a-bccd-c4587807c158)
 
 ## How to push branch locally to GitHub
 • Use: 
@@ -553,27 +558,30 @@ git pull <remote> <branch>
 The question is, do you really need to keep track of every single commit? Including typos, missing files, formatting. If the answer is no, then you should consider **Squash merge**. When squashing a merge, the result is that you get rid of all commits on the branch and only add a single commit on main with all the content. As a result, the **history is much cleaner** and while working on a branch you can do all the commits you want.   
 
 • When we do **normal merge operation** on branches:   
-[merge]()   
-The merge commit is done on the main branch.
-[merge-example1]()
-[merge-example2]()
-[merge-example3]()
-   
+![merge](https://github.com/DakshNsut/Git-Notes/assets/97459596/db8b2e27-be5a-41a1-9079-f0ed1622127c)
+
+The merge commit is done on the main branch.   
+![merge-example1](https://github.com/DakshNsut/Git-Notes/assets/97459596/d42c0aa2-ef74-4e58-8fc0-322db2dfc08e)    
+![merge-example2](https://github.com/DakshNsut/Git-Notes/assets/97459596/5d2ad2d9-e337-4d07-928d-9dfcaabce640)   
+![merge-example3](https://github.com/DakshNsut/Git-Notes/assets/97459596/c26d398a-cf8b-4370-abfa-9e886fbc224c)      
+
 • When we do **merge squash operation** on branches:
-[merge-squash]()
-[merge-squash-example1]()
-[merge-squash-example2]()
-[merge-squash-example3]()   
+![merge-squash](https://github.com/DakshNsut/Git-Notes/assets/97459596/585e41a1-4f10-41f9-9642-dae5fe58af16)   
+![merge-squash-example1](https://github.com/DakshNsut/Git-Notes/assets/97459596/5327f963-14cd-4c84-b49d-a76cbb0b2e3f)   
+![merge-squash-example2](https://github.com/DakshNsut/Git-Notes/assets/97459596/2cbeef75-17d1-408c-9cfc-98cc5e2c3b57)   
+![merge-squash-example3](https://github.com/DakshNsut/Git-Notes/assets/97459596/0a6b9c5b-122a-41f0-9d01-9dc1b012f220)
+
 After merge, no commits were added to “master” branch but a change was staged that would represent all commits in “dev” branch.   
 
 • When we do **rebase operation** on branches:
-[rebase]()   
+![rebase](https://github.com/DakshNsut/Git-Notes/assets/97459596/b175b4f9-5384-4a8b-a057-4d59ba8bc22a)
+
 This would mean solving merge conflict for each commit added on main branch.   
-When performing an interactive rebase all commits except the first one (bottom in the list) can be dropped.
-[rebase-example1]()
-[rebase-example2]()
-[rebase-example3]()
-[rebase-example4]()    
+When performing an interactive rebase all commits except the first one (bottom in the list) can be dropped.     
+![rebase-example1](https://github.com/DakshNsut/Git-Notes/assets/97459596/83df38ef-8fed-4e08-8480-07095ae95819)   
+![rebase-example2](https://github.com/DakshNsut/Git-Notes/assets/97459596/521abd40-ae12-4727-bf5b-38b9f54a4ea5)   
+![rebase-example3](https://github.com/DakshNsut/Git-Notes/assets/97459596/6a0aeea8-77b3-4fc8-a06c-16c7dfa52822)   
+![rebase-example4](https://github.com/DakshNsut/Git-Notes/assets/97459596/9e33702f-1fde-46cb-8d4c-4df7b60c6457)   
 
 • The end objective for merge and rebase commands is same, but their usage varies.
 
