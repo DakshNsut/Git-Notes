@@ -363,10 +363,6 @@ git checkout <commit id>
 ```
 git reset <commit id>
 ```
-Adding --hard changes HEAD pointer to the particular commit, other commits done after it are not shown using "git log" command.
-```
-git reset --hard <commit id>
-```
 Use
 ```
 git reset HEAD~1
@@ -383,7 +379,17 @@ Use
 git reset HEAD@{1}
 ```
 to change Head to previous head commit node.
-
+```
+git reset --hard <commit id>
+```
+Doing reset changes HEAD pointer and Git branch pointer to the particular commit, other commits done after it are not shown using "git log" command. Particularly, adding --hard does the changes in the current working directly, i.e. you can see the state of the files at the commit. In that sense, git checkout is same as git reset --hard. However, git checkout only moves the HEAD pointer to that particular commit and not the Git branch pointer, or the HEAD pointer is in detached state. Thus, any commits done at this state are not accessible through the current branch, those commits are temporary and will be deleted by Git's garbage collector. To make them permanent we need to make a new branch at that commit using:
+```
+git switch -c new-branch
+```
+And to return back to the main branch use:
+```
+git checkout main
+```
 ## Working on GitHub with Git
 If we **push** code from local system to GitHub, then the file will be saved to a GitHub repository. If we **pull** code from GitHub to local system, we can get a folder from GitHub. GitHub just host the files that are tracked by Git in the form of a website so that it can be viewed and managed by multiple members of a group/organization. **remote** means web-host like: GitHub, it is remote connection to GitHub repository.
 
