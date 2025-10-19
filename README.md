@@ -1,6 +1,7 @@
 # GIT Notes
 
-This document contains notes on GIT and how one can understand it.
+This document contains notes on GIT. I was learning GIT and wanted to make notes so that I can re-visit them when I want. I hope it helps others as well.
+
 ### Resources used
 • [Git official documentation](https://git-scm.com/book/en/v2)   
 • [Youtube Playlist](https://www.youtube.com/playlist?list=PLu0W_9lII9agwhy658ZPA0MTStKUJTWPi)   
@@ -611,9 +612,11 @@ When performing an interactive rebase all commits except the first one (bottom i
 
 • The end objective for merge and rebase commands is same, but their usage varies.
 
-| Merge|Rebase|
-| ------------- | ------------- |
-|Git merge is a command that allows you to merge branches from Git.| Git rebase is a command that allows developers to integrate changes from one branch to another.|
-|In Git Merge logs will be showing the complete history of the merging of commits.|Logs are linear in Git rebase as the commits are rebased|
-|All the commits on the feature branch will be combined as a single commit in the master branch.|All the commits will be rebased and the same number of commits will be added to the master branch.|
-|Git Merge is used when the target branch is shared branch.|Git Rebase should be used when the target branch is private branch.|
+| **Aspect** | **Git Merge** | **Git Squash Merge** | **Git Rebase** |
+|-------------|----------------|------------------------|----------------|
+| **Purpose** | Combines two branches, preserving all commits and creating a new *merge commit*. | Combines all commits from a feature branch into *a single commit* before merging. | Reapplies (replays) commits from one branch onto another, creating a *linear history*. |
+| **Commit History** | Non-linear — includes a merge commit showing branch joins. | Simplified — shows only one combined commit for the feature branch. | Linear — appears as if all commits were made directly on the target branch. |
+| **Number of Commits Added** | Keeps all commits from both branches. | Converts all commits on the feature branch into one commit. | Keeps the same number of commits but rewrites them with new commit IDs. |
+| **Preserves Original History** | Yes | No (history is condensed) | No (history is rewritten) |
+| **Use Case** | When working on **shared branches** to preserve collaboration history. | When merging a **feature branch** and you want a single, clean commit in main. | When working on a **private branch** and want a clean, linear history before merging. |
+| **Resulting History Style** | Branched and complete. | Clean and summarized. | Linear and rewritten. |
