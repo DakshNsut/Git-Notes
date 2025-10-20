@@ -59,6 +59,10 @@ This command returns the present working directory.
 ls
 ```
 This command lists the name of all files in the pwd(present working directory).   
+• To list all the files in the pwd including hidden files (which have a '.' as prefix in their name) use:
+```
+ls -a
+```
 • To go to Desktop, make sure you are in its ancestor directory, for this use: 
 ```
 cd ~
